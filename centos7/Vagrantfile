@@ -3,13 +3,13 @@
 Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true 
   config.hostmanager.manage_host = true
-  config.vm.define "trusty64" do |trusty64|
-  config.vm.box = "ubuntu/trusty64"
-  trusty64.vm.hostname = "trusty64"
+  config.vm.define "centos7" do |centos7|
+  config.vm.box = "centos/7"
+  centos7.vm.hostname = "centos7"
   
-  trusty64.vm.network "private_network", ip: "192.168.56.3"
+  centos7.vm.network "private_network", ip: "192.168.56.4"
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "trusty64"
+    vb.name = "centos7"
     vb.memory = "1024"
     vb.cpus = "2"
   end
