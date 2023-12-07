@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true 
+  config.hostmanager.manage_host = true
+  config.vm.define "develop" do |develop|
+  config.vm.box = "ubuntu/trusty64"
+  develop.vm.hostname = "develop"
+  develop.vm.network "private_network", ip: "192.168.56.7"
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "develop"
+    vb.memory = "2048"
+    vb.cpus = "4"
+    vb.gui = true
+  end
+end
+end
