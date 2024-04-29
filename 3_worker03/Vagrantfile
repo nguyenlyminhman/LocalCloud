@@ -3,12 +3,12 @@
 Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true 
   config.hostmanager.manage_host = true
-  config.vm.define "worker02" do |worker02|
+  config.vm.define "worker03" do |worker03|
     config.vm.box = "ubuntu/bionic64"
-    worker02.vm.hostname = "worker02"
-    worker02.vm.network "private_network", ip: "192.168.56.3"
+    worker03.vm.hostname = "worker03"
+    worker03.vm.network "private_network", ip: "192.168.56.4"
     config.vm.provider "virtualbox" do |vb|
-      vb.name = "worker02"
+      vb.name = "worker03"
       vb.memory = "2048"
       vb.cpus = "2"
     end
