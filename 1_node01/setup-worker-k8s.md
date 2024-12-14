@@ -60,4 +60,4 @@ Process the step 1 & 2.
 From the master node, executing the print-join-command to get master token. Copy the information then executing in the worker node.
 
 ### Print join command from the master node.
-kubeadm token create  print-join-command
+kubeadm token create  --print-join-command

@@ -1,0 +1,25 @@
+apiVersion: v1
+# ở đây phiên bản cũ hơn của kubernetes có dạng extensions/v1beta1
+kind: Pod
+# kind có nhiều loại, Pod, Service, Deployment, ở đây khai báo là Pod,
+metadata:
+  name: two-container-in-pod
+spec:
+  replica: 2
+  # replica ở đây sẽ tạo ra 2 pods luôn luôn chạy, khi một số pods bị down hay chết hay bất kì lý do nào đó.
+  # Pod sẽ tự động tạo lại số lượng đã khai báo ở trên.
+  containers:
+  - name: nginx
+    image: nginx:latest
+    # image của container docker
+    ports:
+    - containerPort: 80
+    # port bên trong container
+
+  - name: redis
+    image: redis:latest
+    ports:
+    - containerPort: 6379
+
+
+
