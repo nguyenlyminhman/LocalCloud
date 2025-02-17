@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true 
+  config.hostmanager.manage_host = true
+  config.vm.define "docker" do |docker|
+    config.vm.box = "ubuntu/jammy64"
+    docker.vm.hostname = "docker"
+    docker.vm.network "private_network", ip: "192.168.56.5"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "docker"
+      vb.memory = "1024"
+      vb.cpus = "1"
+    end
+  end
+end
