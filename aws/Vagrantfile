@@ -4,15 +4,16 @@ Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true 
   config.hostmanager.manage_host = true
   config.vm.define "aws" do |aws|
-  config.vm.box = "ubuntu/jammy64"
-  config.vm.synced_folder ".", "/var/ec2"
+  config.vm.box = "ubuntu/xenial64"
   aws.vm.hostname = "aws"
-  
-  aws.vm.network "private_network", ip: "192.168.56.4"
-  config.vm.provider "virtualbox" do |vb|
-    vb.name = "aws"
-    vb.memory = "512"
-    vb.cpus = "1"
+  aws.vm.network "forwarded_port", guest: 80, host: 8083
+  aws.vm.network "private_network", ip: "192.168.56.13"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "aws"
+      vb.memory = "1024"
+      vb.cpus = "1"
+      vb.linked_clone = false
+    end
   end
-end
+  # config.vm.provision "shell", path: "./k8s.sh"
 end
