@@ -5,8 +5,8 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.vm.define "node01" do |node01|
   config.vm.box = "ubuntu/bionic64"
-  config.vm.box_version = "20241002.0.0"
-  config.ssh.username = 'vagrant'
+  # config.vm.box_version = "20241002.0.0"
+  # config.ssh.username = 'vagrant'
   node01.vm.hostname = "node01"
   node01.vm.network "forwarded_port", guest: 22, host: 2202, id: "ssh"
   node01.vm.network "forwarded_port", guest: 80, host: 8082
