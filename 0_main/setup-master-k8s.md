@@ -25,7 +25,7 @@ sudo usermod -aG docker ${USER}
 su - ${USER}
 
 
-# 2. Install K8S
+# 2. Install K8S (version v1.29.15)
 sudo apt-get update
 ### apt-transport-https may be a dummy package; if so, you can skip that package
 sudo apt-get install -y apt-transport-https ca-certificates curl
@@ -58,7 +58,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 ### Add server IP to kube admin
 sudo kubeadm init --kubernetes-version=v1.29.15
 kubeadm config images pull
-kubeadm init --apiserver-advertise-address=Your_Server_IP --pod-network-cidr=Your_Server_IP/16
+kubeadm init --apiserver-advertise-address=Your_Server_IP --pod-network-cidr=Your_Server_IP/16 --kubernetes-version=v1.29.15
 
 ### After adding server IP, Read carefully the instruction:
 <!-- 

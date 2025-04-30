@@ -25,7 +25,7 @@ sudo usermod -aG docker ${USER}
 su - ${USER}
 
 
-# 2. Install K8S
+# 2. Install K8S (version v1.29.15)
 sudo apt-get update
 ### apt-transport-https may be a dummy package; if so, you can skip that package
 sudo apt-get install -y apt-transport-https ca-certificates curl
