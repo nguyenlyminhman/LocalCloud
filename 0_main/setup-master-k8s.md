@@ -56,6 +56,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 # 3. Setup Master Node
 ### Add server IP to kube admin
+sudo kubeadm init --kubernetes-version=v1.29.15
 kubeadm config images pull
 kubeadm init --apiserver-advertise-address=Your_Server_IP --pod-network-cidr=Your_Server_IP/16
 
