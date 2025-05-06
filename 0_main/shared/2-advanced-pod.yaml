@@ -1,0 +1,32 @@
+apiVersion: v1                 # Phiên bản API của Kubernetes, v1 là version ổn định hiện tại cho Pod
+kind: Pod                      # Loại tài nguyên là Pod (đơn vị nhỏ nhất trong K8s)
+
+metadata:
+  name: advanced-web           # Tên của Pod là 'advanced-web'
+
+spec:
+  containers:
+    - name: web                # Tên của container trong Pod
+      image: nginx             # Image Docker sử dụng là 'nginx' (lấy từ Docker Hub)
+      ports:
+        - name: web            # Tên port để tham chiếu bên trong Pod
+          containerPort: 80    # Cổng container lắng nghe (nginx mặc định dùng cổng 80)
+          protocol: TCP        # Giao thức TCP
+
+      # Probe kiểm tra container có đang sống không (nếu fail sẽ bị restart)
+      livenessProbe:
+        httpGet:
+          path: /              # Kiểm tra HTTP GET đến đường dẫn /
+          port: 80             # Trên cổng 80
+        initialDelaySeconds: 30  # Đợi 30 giây sau khi container chạy mới bắt đầu kiểm tra
+        periodSeconds: 5         # Kiểm tra mỗi 5 giây
+        failureThreshold: 3      # Nếu thất bại 3 lần liên tiếp -> container bị restart
+
+      # Probe kiểm tra container đã sẵn sàng nhận request hay chưa
+      readinessProbe:
+        httpGet:
+          path: /              # Kiểm tra HTTP GET đến đường dẫn /
+          port: 80             # Trên cổng 80
+        initialDelaySeconds: 30  # Đợi 30 giây sau khi container chạy mới bắt đầu kiểm tra
+        periodSeconds: 5         # Kiểm tra mỗi 5 giây
+        failureThreshold: 5      # Nếu thất bại 5 lần liên tiếp -> container không được đưa vào load balancer

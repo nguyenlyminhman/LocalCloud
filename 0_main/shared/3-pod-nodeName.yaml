@@ -1,0 +1,17 @@
+apiVersion: v1                 # Phiên bản API của Kubernetes, với Pod thì dùng 'v1'
+kind: Pod                      # Loại tài nguyên là Pod
+
+metadata:
+  name: nginx                  # Tên của Pod là 'nginx'
+
+spec:
+  nodeName: nodename           # Chỉ định Pod sẽ chạy trên node có tên 'nodename' (thay 'nodename' bằng tên thật, ví dụ: node01)
+  
+  containers:
+    - name: web                # Tên của container trong Pod
+      image: nginx             # Docker image sử dụng là 'nginx'
+      
+      ports:
+        - name: web            # Tên của cổng (có thể dùng để tham chiếu nội bộ)
+          containerPort: 80    # Container sẽ lắng nghe trên cổng 80 (cổng mặc định của nginx)
+          protocol: TCP        # Giao thức sử dụng là TCP

@@ -1,0 +1,17 @@
+apiVersion: v1
+# ở đây phiên bản cũ hơn của kubernetes có dạng extensions/v1beta1
+kind: Pod
+# kind có nhiều loại, Pod, Service, Deployment, ở đây khai báo là Pod,
+metadata:
+  name: static-web
+  # Tên của pod
+spec:
+  containers:
+    - name: web
+      image: nginx
+      # image của container docker
+      ports:
+        - name: web
+          containerPort: 80
+          # port bên trong container
+          protocol: TCP
