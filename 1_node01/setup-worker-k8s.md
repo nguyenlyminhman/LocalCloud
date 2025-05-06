@@ -61,3 +61,7 @@ From the master node, executing the print-join-command to get master token. Copy
 
 ### Print join command from the master node.
 kubeadm token create  --print-join-command
+
+```If joining get error: container runtime is not running```
+
+sudo containerd config default | sudo tee /etc/containerd/config.toml
